@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">GPA Calculator</string>
+    <string name="app_name">GPA_acocellaj2_Calculator</string>
     <string name="course1_name">Course 1</string>
     <string name="course2_name">Course 2</string>
     <string name="course3_name">Course 3</string>
     <string name="course4_name">Course 4</string>
     <string name="course5_name">Course 5</string>
     <string name="compute_gpa_text">Compute GPA</string>
+    <string name="clear_button_text">Clear Form</string>
 </resources>
