@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         double gpaResult = 0;
         String gpaString;
-        String gradeColor = "";
         LinearLayout layout1 = (LinearLayout)findViewById(R.id.GPA_layout);
         Button button = (Button) view;
         EditText grade1 = (EditText) findViewById(R.id.PlainText_Grade1);
@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         EditText grade4 = (EditText) findViewById(R.id.PlainText_Grade4);
         EditText grade5 = (EditText) findViewById(R.id.PlainText_Grade5);
         EditText result = (EditText) findViewById(R.id.editTextResult);
+
+        ScrollView scroll1= (ScrollView)findViewById(R.id.emptyscroll);
 
         Log.i(TAG, button.getText().toString());
         if (button.getText()==getResources().getString(R.string.clear_button_text)){
@@ -46,28 +48,37 @@ public class MainActivity extends AppCompatActivity {
             result.setText(null);
             button.setText(R.string.compute_gpa_text);
             layout1.setBackgroundColor(Color.WHITE);
+            scroll1.setBackgroundColor(Color.WHITE);
         }
 
-        else if (TextUtils.isEmpty(grade1.getText()) || TextUtils.isEmpty(grade2.getText()) || TextUtils.isEmpty(grade3.getText()) ||
+        else if (TextUtils.isEmpty(grade1.getText()) || TextUtils.isEmpty(grade2.getText()) ||
+                TextUtils.isEmpty(grade3.getText()) ||
                 TextUtils.isEmpty(grade4.getText()) || TextUtils.isEmpty(grade5.getText())) {
-            Toast.makeText(getApplicationContext(), "Please enter a grade for each course", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Please enter a grade for each course",
+                    Toast.LENGTH_SHORT).show();
         }
 
         else  {
-            gpaResult = (Float.parseFloat(grade1.getText().toString()) + Float.parseFloat(grade2.getText().toString()) + Float.parseFloat(grade3.getText().toString()) +
-                    Float.parseFloat(grade4.getText().toString()) + Float.parseFloat(grade5.getText().toString())) / 5;
+            gpaResult = (Float.parseFloat(grade1.getText().toString()) +
+                    Float.parseFloat(grade2.getText().toString()) +
+                    Float.parseFloat(grade3.getText().toString()) +
+                    Float.parseFloat(grade4.getText().toString()) +
+                    Float.parseFloat(grade5.getText().toString())) / 5;
             gpaString = String.valueOf(gpaResult);
             result.setText(gpaString);
 
 
             if (gpaResult <60) {
                 layout1.setBackgroundColor(Color.RED);
+                scroll1.setBackgroundColor(Color.RED);
             }
             else if (gpaResult >= 61 && gpaResult <= 79){
                 layout1.setBackgroundColor(Color.YELLOW);
+                scroll1.setBackgroundColor(Color.YELLOW);
             }
             else if (gpaResult >= 80 && gpaResult <= 100){
                 layout1.setBackgroundColor(Color.GREEN);
+                scroll1.setBackgroundColor(Color.GREEN);
             }
             button.setText(R.string.clear_button_text);
         }
